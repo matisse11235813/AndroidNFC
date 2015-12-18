@@ -8,6 +8,7 @@ import android.content.IntentFilter;
 import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
+import android.nfc.NfcEvent;
 import android.nfc.Tag;
 import android.nfc.tech.Ndef;
 import android.nfc.tech.NdefFormatable;
@@ -56,7 +57,9 @@ public class MainActivity extends AppCompatActivity {
         // Tag writing mode
         if (NfcAdapter.ACTION_TAG_DISCOVERED.equals(intent.getAction())) {
             Tag detectedTag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
-            writeTag(getNoteAsNdef(), detectedTag);
+//            writeTag(getNoteAsNdef(), detectedTag);
+//            writeTag(createURLNdefMessage(), detectedTag);
+                        writeTag(createAARmessage(), detectedTag);
         }
     }
 
@@ -88,6 +91,22 @@ public class MainActivity extends AppCompatActivity {
         return new NdefMessage(new NdefRecord[] {
                 textRecord
         });
+    }
+
+ //建立一個NDEF訊息，它包含一個URL，可以讓掃到TAG的手機跳出網頁
+    public NdefMessage createURLNdefMessage() {
+        NdefMessage msg = new NdefMessage(new NdefRecord[] {
+                NdefRecord.createUri("https://www.facebook.com/boshen978")
+        });
+        return msg;
+    }
+
+    public NdefMessage createAARmessage() {
+        NdefMessage msg = new NdefMessage(new NdefRecord[] {
+           NdefRecord.createApplicationRecord("com.madhead.tos.zh")
+        });
+
+        return msg;
     }
 
 
