@@ -22,12 +22,25 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText" />
+            android:id="@+id/editText"
+            android:hint="輸入你想寫入NFC Tag的東西"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New Button"
+            android:text="寫入普通字串"
             android:id="@+id/button" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="寫入web URL"
+            android:id="@+id/button_web" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="寫入  app id"
+            android:id="@+id/button_appid" />
     </LinearLayout>
 </RelativeLayout>
